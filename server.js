@@ -2,7 +2,8 @@ const express = require("express");
 const morgan = require("morgan");
 require("dotenv").config();
 
-const todoRoutes = require("./routes/todos");
+const todoRoutes = require("./routes/todoRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +14,7 @@ app.use(morgan("dev"));
 
 // Routes
 app.use("/api/todos", todoRoutes);
+app.use("/api/auth", authRoutes);
 
 // Root route
 app.get("/", (req, res) => {
