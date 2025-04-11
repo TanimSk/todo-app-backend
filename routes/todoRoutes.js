@@ -1,13 +1,18 @@
 const express = require('express');
 const router = express.Router();
-import {
+const {
     getTodos,
-    getSingleTodos,
+    getSingleTodo,
     createTodo,
     updateTodo,
-} from '../controllers/todoController';
+    deleteTodo,
+} = require('../controllers/todoController');
+const authenticateToken = require('../middlewares/authMiddleware');
 
-router.get('/', getTodos);
-router.get('/:id', getSingleTodos);
-router.post('/', createTodo);
-router.put('/:id', updateTodo);
+router.get('/', authenticateToken, getTodos);
+router.get('/:id', authenticateToken, getSingleTodo);
+router.post('/', authenticateToken, createTodo);
+router.put('/:id', authenticateToken, updateTodo);
+router.delete('/:id', authenticateToken, deleteTodo);
+
+module.exports = router;
