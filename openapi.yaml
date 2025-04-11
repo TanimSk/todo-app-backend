@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  title: todo
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:3000
+paths:
+  /api/auth/register:
+    post:
+      tags:
+        - General
+      summary: registration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: tanimsk
+                email: tanim@gmail.com
+                password: '123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/auth/login:
+    post:
+      tags:
+        - General
+      summary: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: tanim@gmail.com
+                password: '123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/todos/:
+    post:
+      tags:
+        - General
+      summary: create todo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: do homework
+                description: physics
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+        - name: ''
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/todos/37f46bde-c059-4f68-b794-a2ff25761543:
+    put:
+      tags:
+        - General
+      summary: update todo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: do homework
+                description: physics homework
+                is_completed: false
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+        - name: ''
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - General
+      summary: get single todos
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - General
+      summary: delete todos
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/todos:
+    get:
+      tags:
+        - General
+      summary: get all todos
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+        - name: ''
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
